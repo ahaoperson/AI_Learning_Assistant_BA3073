@@ -122,3 +122,20 @@ The earlier incomplete items are superseded by these observations:
 - Certificate renewal timer is configured. Renewal simulation and backup restore
   are recommendations; neither is claimed tested. Default unused provider
   button remains visible; its OAuth start/callback routes are blocked.
+
+## Submission audit - 2026-10-26
+
+- Re-fetched the teacher's current upstream README; byte-for-byte identical
+  to the requirements used for this submission.
+- Confirmed all four required submission items and public GitHub repository.
+- Corrected report text to state exact BNBU domains are accepted, while
+  lookalike/malformed domains are rejected. Tests operate on registration/login
+  JSON, not invented header injection.
+- Corrected the security description: default SSH/RDP/ICMP rules remain;
+  only the temporary 14242 rules were removed. No blanket-deny claim is made.
+- Corrected architecture description: Qwen produces HTML and backend
+  Playwright/Chromium renders PDF. This is a course demonstration, not a
+  production-readiness certification.
+- Original ECS self-check failure remains disclosed. The teacher explicitly
+  asks the log to list a running application with port14242 published; it does.
+  The README does not explicitly require the self-request to report PASS.
