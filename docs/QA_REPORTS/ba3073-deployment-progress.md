@@ -89,3 +89,36 @@ Remaining: authenticated proxy/generation/download testing; close public 14242
 and return Docker bind to loopback; genuine address-bar evidence; export ECS
 log; final report generated in app and visual/page-count QA. TLS renewal dry-run
 has not yet been performed.
+
+## Authenticated cloud generation verified
+
+- User completed the external password gate and retained the BNBU app session.
+- Real cloud run b4ca518f-0606-48db-a933-8e88680da978 succeeded on
+  2026-10-26, model qwen3.6-flash, search disabled.
+- Manifest: provider generation 33,787 ms, PDF conversion 2,851 ms,
+  total 36,797 ms. Both output/main.html and output/main.pdf present.
+- Browser rendered generated HTML; backend observed PDF HTTP 200 through Nginx.
+- This one-page note is a preliminary smoke test, not the final report.
+- Address-bar screenshots still require user capture: browser screenshot API
+  omits browser chrome and native Codex app capture is unavailable by policy.
+
+## Final evidence and cleanup - 2026-10-26
+
+The earlier incomplete items are superseded by these observations:
+- A later Nginx request log showed actual source 109.175.189.98. The user
+  explicitly approved a temporary .98/32 TCP14242 rule. Direct-IP UI loaded
+  and the student supplied an authenticated screenshot including address bar.
+- Student-supplied local and HTTPS screenshots also include address bars.
+- All temporary TCP14242 rules were removed after testing. Final app binding
+  is 127.0.0.1; HTTPS continues through the independent password gate.
+- Original ECS script log was exported without changing its curl28/HTTP000 FAIL.
+  This ECS-to-own-public-IP check is distinct from successful student browsing.
+- Cloud report source run 89ed93d1-19e9-4d29-972e-cfb1873b984d succeeded.
+  Generated HTML was preserved; editorial corrections, missing closing report
+  sections and authentic figures were added before final PDF rendering.
+- Final report is 11 A4 pages including figures and references; all pages were
+  rendered and visually inspected. The source generation's incorrect use of
+  curl --insecure and IP suffixes described as ports were corrected.
+- Certificate renewal timer is configured. Renewal simulation and backup restore
+  are recommendations; neither is claimed tested. Default unused provider
+  button remains visible; its OAuth start/callback routes are blocked.
