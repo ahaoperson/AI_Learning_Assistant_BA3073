@@ -156,6 +156,42 @@ def build_essay_html_prompt(
         "sources in a References section using ordinary HTML. Do not wrap the "
         "answer in Markdown fences."
     )
+    assignment_instruction = (
+        "For the BA3073 'From AI Agent to Cloud Service' assignment, produce an "
+        "evidence-based deployment report of no more than 20 A4 pages, including "
+        "title, figures, references and appendices. Aim for 12–16 pages with "
+        "readable typography; never hide content or shrink text to evade the limit. "
+        "Use the requested language and only supplied student identity details. "
+        "Organize it into: title and abstract; objectives and system architecture; "
+        "Task 1 local Docker deployment and verification; explanation of the revised "
+        "report-generation instructions; Task 2 Linux image build, ACR push/pull and "
+        "ECS deployment; Task 3 DNS, Nginx, TLS and additional access control; "
+        "verification results; security, persistence and cost analysis; limitations "
+        "and prioritized improvements; conclusion and references. Explain FastAPI, "
+        "the browser UI, SQLite, Qwen-compatible API, Docker image versus container, "
+        "and host-mounted data/workspace directories in clear technical language. "
+        "Explain the direct-IP test on port 14242 restricted to the student's public "
+        "IP, followed by public ports 80/443 and closure of public port 14242 once "
+        "Nginx forwards to 127.0.0.1:14242. Describe reverse-proxy access control "
+        "separately from the built-in BNBU login. Describe API-key handling without "
+        "revealing secrets, TLS renewal, backups including the encryption key, and "
+        "ECS/storage/traffic/domain/model-token costs without inventing prices. "
+        "Use only actual evidence supplied in the task and prepared context. Tie "
+        "each result to its command, observed output, screenshot or log filename. "
+        "Include local-ui-check.txt and ecs-docker-check.txt findings, screenshots "
+        "of the working local and ECS interfaces with browser address bars, and the "
+        "real HTTPS URL plus screenshot after the extra access-control check. "
+        "Embed only supplied authentic screenshots, with legible address bars and "
+        "captions; never draw simulated browser screenshots or fabricate logs, "
+        "URLs, measurements, citations, deployment success, or student details. "
+        "If evidence is absent, explicitly mark it 'Not yet verified / evidence "
+        "required' and describe the report as a draft, not a completed assignment. "
+        "Distinguish completed steps, failed checks and proposed improvements. "
+        "Explain why each important configuration was chosen instead of merely "
+        "listing commands. Use concise tables and inline architecture diagrams. "
+        "Keep passwords, API keys, tokens and private keys out of every section. "
+        "Preserve the AI Learning Assistant authorship credit."
+    )
     user_prompt = "\n\n".join(
         [
             "[Assignment Task]\n" + task_text.strip(),
@@ -163,6 +199,7 @@ def build_essay_html_prompt(
             "[Search Citations]\n" + format_citations(search),
             "[Options]\n" + json.dumps(options, sort_keys=True),
             "[Output Contract]\n" + output_instruction,
+            "[BA3073 Report Requirements]\n" + assignment_instruction,
         ]
     )
     return system_prompt, user_prompt

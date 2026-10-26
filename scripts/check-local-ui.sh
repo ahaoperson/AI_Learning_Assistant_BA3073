@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -u
+set -uo pipefail
 umask 077
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -14,7 +14,7 @@ case "${1:-}" in
   *) echo "Usage: bash scripts/check-local-ui.sh [--open]" >&2; exit 2 ;;
 esac
 
-exec > >(tee "${REPORT_FILE}") 2>&1
+run_check() {
 
 echo "AI Learning Assistant Local Web Interface Check"
 echo "Time (local): $(date '+%Y-%m-%dT%H:%M:%S%z')"
@@ -75,3 +75,8 @@ if "${launcher}" "${UI_URL}"; then
 else
   echo "Browser launch: request failed; HTTP check passed. Open the URL manually."
 fi
+
+}
+
+# A normal pipeline also works in shells restricted from opening /dev/fd.
+run_check 2>&1 | tee "${REPORT_FILE}"

@@ -34,7 +34,8 @@ def normalize_email(email: str) -> str:
 
 def role_for_email(email: str) -> str:
     normalized = normalize_email(email)
-    if normalized.endswith("@bnbu.edu.cn"):
+    local, separator, domain = normalized.partition("@")
+    if local and separator and domain in {"bnbu.edu.cn", "mail.bnbu.edu.cn"}:
         return "teacher"
     raise AuthError(
         400,

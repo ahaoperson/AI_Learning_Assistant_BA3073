@@ -14,7 +14,7 @@ Preserve teaching-product identity while keeping the implementation replaceable 
 
 | Email Pattern | Role | First-Phase Capability |
 | --- | --- | --- |
-| `*@bnbu.edu.cn` | `teacher` | Full artifact generation |
+| `*@bnbu.edu.cn` or `*@mail.bnbu.edu.cn` | `teacher` | Full artifact generation |
 
 Unknown domains must be rejected.
 
@@ -102,7 +102,7 @@ Failure cases:
 
 | Scenario | HTTP | Code |
 | --- | --- | --- |
-| Email not `@bnbu.edu.cn` | 400 | `unknown_email_domain` |
+| Email outside `@bnbu.edu.cn` and `@mail.bnbu.edu.cn` | 400 | `unknown_email_domain` |
 | Missing/short password, mismatch on register | 400 | `validation_error` (with `fields`) |
 | Email already registered | 409 | `conflict` |
 | Wrong password on login | 401 | `unauthorized` |
@@ -135,3 +135,7 @@ Failure cases:
 ## Open Questions
 
 - Whether sessions should support explicit logout/revocation in phase 1 or only natural expiry.
+
+Student-domain compatibility: accept the exact mail.bnbu.edu.cn domain as well
+as bnbu.edu.cn, with a non-empty local part. Other subdomains and lookalikes
+remain rejected. Token transport and capabilities are unchanged.

@@ -75,3 +75,35 @@ def test_missing_and_invalid_bearer_token_are_rejected(auth_client):
     assert missing.json()["error"]["code"] == "unauthorized"
     assert invalid.status_code == 401
     assert invalid.json()["error"]["code"] == "unauthorized"
+
+
+@pytest.mark.parametrize("email", ["Student@MAIL.BNBU.EDU.CN", "student@bnbu.edu.cn"])
+def test_supported_bnbu_domains_complete_auth_flow(auth_client, email):
+    client, _repo = auth_client
+    credentials = {"email": email, "password": "test-only-password"}
+    registered = client.post("/api/auth/register", json={
+        **credentials, "confirm_password": credentials["password"],
+    })
+    assert registered.status_code == 200
+    logged_in = client.post("/api/auth/login", json=credentials)
+    assert logged_in.status_code == 200
+    me = client.get("/api/auth/me", headers={
+        "Authorization": "Bearer " + logged_in.json()["token"],
+    })
+    assert me.status_code == 200
+    assert me.json()["email"] == email.lower()
+
+
+@pytest.mark.parametrize("email", [
+    "student@mail.bnbu.edu.cn.evil.example", "student@evilbnbu.edu.cn",
+    "student@other.bnbu.edu.cn", "student@evil@mail.bnbu.edu.cn",
+    "@mail.bnbu.edu.cn",
+])
+def test_lookalike_and_malformed_institutional_domains_rejected(auth_client, email):
+    client, _repo = auth_client
+    response = client.post("/api/auth/register", json={
+        "email": email, "password": "test-only-password",
+        "confirm_password": "test-only-password",
+    })
+    assert response.status_code == 400
+    assert response.json()["error"]["code"] == "unknown_email_domain"

@@ -207,3 +207,17 @@ Process outcomes that make the rebuild safe for rotating agents (verified by `sc
 - 2026-06-09: Migrated all PDF pipelines from LaTeX to HTML-native with Playwright (ADR 009).
 - 2026-06-10: HTML-native migration and Electron packaging completed; task queue cleared.
 - 2026-09-13: Replaced the legacy institution-specific auth and branding references with BNBU equivalents.
+
+## BA3073 Assignment Report Instructions
+
+The essay prompt now includes the assignment structure, a 20-page total limit,
+explicit evidence requirements for all three deployment tasks, and security,
+persistence and cost analysis. Missing evidence must be labelled unverified and
+the report kept as a draft. Prompt instructions do not mechanically enforce the
+PDF page count: the exported PDF must be counted and visually checked before
+submission. Local Compose binds to loopback; the dedicated ECS configuration
+allows an explicit direct-access phase followed by loopback-only proxy access.
+
+The student mailbox domain `mail.bnbu.edu.cn` is accepted alongside
+`bnbu.edu.cn`, using exact domain matching. This is still weak teaching auth,
+not institutional ownership verification.
