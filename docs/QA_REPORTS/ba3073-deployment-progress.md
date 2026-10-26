@@ -60,3 +60,32 @@ No token transport, role or secret-storage change was made.
   applies to that model, not to all Aliyun services.
 - User completed local registration and reported saving and testing their model
   key. No key or password is recorded in source or evidence.
+
+## Verified on 2026-10-26
+
+- Source published: https://github.com/ahaoperson/AI_Learning_Assistant_BA3073
+  (initial assignment commit 6feb485a11073504b9879dae3fe2d474069f845f).
+- ECS container healthy after 10 hours, listening on 0.0.0.0:14242.
+- Genuine ECS check produced ecs-docker-check.txt on ECS. Its public-IP
+  self-request timed out (curl 28, HTTP 000); retain this failure honestly.
+- Student browser HTTPS egress is 109.175.189.101; shell egress is .99.
+  Direct-IP browser request also timed out despite the .101/32 rule.
+- User-created free domain yigehaoperson.duckdns.org resolves to 47.238.242.79.
+- User approved and created public TCP 80/443 rules. Nginx configuration passed.
+- Certbot issued and deployed a certificate expiring 2027-01-24; automatic
+  renewal timer configured. External HTTPS /ui/ returned 200 and curl TLS
+  verification result 0 before the access gate was enabled.
+- User registered cloud assistant and saved Qwen settings; UI confirmed saved.
+- OAuth2 Proxy v7.15.5 downloaded from official release with checksum comparison.
+  Password-only sign-in uses the user's bcrypt htpasswd entry and a secure,
+  HttpOnly, SameSite=Lax session cookie. External OAuth start/callback routes
+  are blocked; GitHub OAuth is not configured. Nginx auth_request preserves
+  application Authorization headers. Unauthenticated /ui/ returns 403 and
+  displays the password form. Authenticated full-flow verification pending.
+- Initial proxy startup failed because standard Base64 cookie-secret encoding
+  was not accepted; corrected to URL-safe Base64 and restarted successfully.
+
+Remaining: authenticated proxy/generation/download testing; close public 14242
+and return Docker bind to loopback; genuine address-bar evidence; export ECS
+log; final report generated in app and visual/page-count QA. TLS renewal dry-run
+has not yet been performed.

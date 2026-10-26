@@ -47,3 +47,6 @@ build/
 Thumbs.db
 .idea/
 .vscode/
+
+# Independent reverse-proxy secrets
+proxy-secrets/
